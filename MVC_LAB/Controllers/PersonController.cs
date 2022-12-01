@@ -14,6 +14,8 @@ namespace MVC_LAB.Controllers
             _personService = personService;
         }
 
+        public IActionResult NewPerson() { return View(); }
+
         public IActionResult Index()
         {
             var model = new PersonViewModel()
@@ -21,6 +23,11 @@ namespace MVC_LAB.Controllers
                 Persons =_personService.GetPersons()
             };
             return View(model);
+        }
+        public IActionResult CreateNewPerson(int id, string name, string city, GenderEnum gender)
+        {
+            _personService.CreatePerson(id, name, city, gender);
+            return RedirectToAction("Index");
         }
     }
 }

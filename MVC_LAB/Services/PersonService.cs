@@ -14,5 +14,16 @@ namespace MVC_LAB.Services
         {
             return _context.Persons.ToList();
         }
+        public void CreatePerson(int id, string name, string city, GenderEnum gender)
+        {
+            _context.Persons.Add(new PersonModel()
+            {
+                ID = id,
+                Name = name,
+                City = city,
+                Gender = gender
+            });
+            _context.SaveChanges();
+        }
     }
 }
